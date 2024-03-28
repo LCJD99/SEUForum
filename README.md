@@ -21,7 +21,7 @@
 ### 设计、编码
 
 - 代码托管平台： Github： https://github.com/
-- IDE： VSCode (推荐)
+- IDE： VSCode( [调试配置文档](https://code.visualstudio.com/docs/nodejs/nodejs-debugging)) (推荐)
 - 编程语言： JavaScript ( [Nodejs](https://nodejs.org) )
 - 包管理工具： Npm 
 - 版本管理工具： Git
@@ -29,11 +29,14 @@
 - API 设计： Postman  ([API全流程](https://www.postman.com/api-platform/api-lifecycle/))
 - 数据库： 
 
+#### 技术细节
 
+- 密钥验证流程：![](https://fullstackopen.com/static/259c9dce6b3d1d77bedb04e799ac7dd3/5a190/16new.png)
 
 #### 设计规范
 
-1. 使用 [eslint](https://eslint.org/) 作为静态语法分析工具，可使用`git hook`在`commit`的时候自动修正
+
+1. ， 采用[Airbnb JavaScript Style](https://github.com/airbnb/javascript#readme)风格编写代码。 使用 [eslint](https://eslint.org/) 作为静态语法分析工具，有vscode插件用于静态分析, 可使用`git hook`在`commit`的时候自动修正
 
 2. 多人 git 的流程:  教程： https://www.freecodecamp.org/news/how-to-use-git-and-github-in-a-team-like-a-pro/<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/94wbcj99uvf39ax8f3ab.png" style="zoom: 30%;" />
 
@@ -62,7 +65,7 @@
 
 ### 测试
 
-* 单元测试： Mocha ： https://mochajs.org/  可使用`git hook`在`commit`的时候自动测试
+* 单元测试：https://vitest.dev/  可使用`git hook`在`commit`的时候自动测试
 * CI： Github Action
 * API 测试： Postman
 
