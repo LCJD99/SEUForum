@@ -15,7 +15,8 @@ const mongoose = require('mongoose')
 const url = config.MONGODB_URI
 logger.info('connecting to', url)
 
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+// mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(url)
   .then(() => {
     logger.info('connected to MongoDB')
   })
@@ -27,8 +28,10 @@ morgan.token('body', function (req) { return JSON.stringify(req.body) })
 
 app.use(bodyParser.json())
 app.use(cors())
+// 网络请求logger
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
+// 路由组件
 app.use('/api/login', loginRouter)
 app.use('/api/users', usersRouter)
 
@@ -37,6 +40,7 @@ if (process.env.NODE_ENV === 'test') {
   app.use('/api/testing', testingRouter)
 }
 
+// 验证token中间件
 app.use(middleware.tokenExtractor)
 app.use(middleware.tokenValidator)
 
