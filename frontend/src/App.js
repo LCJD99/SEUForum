@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Switch, Route, useRouteMatch } from 'react-router-dom'
+import { Switch, Route, useRouteMatch, Redirect } from 'react-router-dom'
 import Header from './components/Header'
 import UserList from './components/UserList'
 import LoginForm from './components/LoginForm'
@@ -127,26 +127,19 @@ const App = () => {
           )}
         </Route>
         <Route path="/blogs">
-          {user === null ? (
-              <div>
-                <Notification />
-                <LoginForm />
-              </div>
-            ) : (
-              <div>
-                <Header />
-                <h2>Bloglist</h2>
-                <Notification />
-                  <Togglable buttonLabel="Add new blog" ref={blogFormRef}>
-                    <BlogForm />
-                  </Togglable>
-                  <Table striped>
-                    <tbody>
-                      <BlogList />
-                    </tbody>
-                  </Table>
-              </div>
-            )}
+          <div>
+            <Header />
+            <h2>Bloglist</h2>
+            <Notification />
+            <Togglable buttonLabel="Add new blog" ref={blogFormRef}>
+              <BlogForm />
+            </Togglable>
+            <Table striped>
+              <tbody>
+                <BlogList />
+              </tbody>
+            </Table>
+          </div>
         </Route>
         <Route path="/users">
           {user === null ? (
@@ -165,8 +158,7 @@ const App = () => {
           )}
         </Route>
         <Route path="/">
-          <Notification />
-          <LoginForm />
+          <Redirect to="/blogs" />
         </Route>
       </Switch>
     </div>

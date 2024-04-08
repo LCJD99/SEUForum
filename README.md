@@ -104,3 +104,4 @@ Model（模型）：在 Redux 中，模型通常被称为状态（State）。状
 View（视图）：在 Redux 中，视图表示用户界面的表示。视图可以是 React 组件、HTML 元素或者任何其他类型的 UI。视图从 Redux 的状态中获取数据，并将其渲染到界面上。视图也可以响应用户的操作并将这些操作传递给控制器或者 Redux 中间件。在 React 应用中，通常会使用 connect 函数将 React 组件连接到 Redux 的状态树。
 
 Controller（控制器）：在 Redux 中，控制器的角色通常由 Action Creators 和 Reducers 共同承担。Action Creators 是用于创建 Action 的函数，它们描述了发生了什么事件，比如用户点击按钮、发送 API 请求等。Reducers 是纯函数，它们接收先前的状态和一个 Action，并根据 Action 的类型来生成新的状态。Reducers 负责更新状态树，以响应用户的操作或其他事件。
+
