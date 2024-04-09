@@ -21,3 +21,5 @@ git clone -b dev1.0 https://github.com/LCJD99/SEUForum.git
 ``` bash
 docker compose up -d
 ```
+
+test_lx
