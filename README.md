@@ -105,3 +105,8 @@ View（视图）：在 Redux 中，视图表示用户界面的表示。视图可
 
 Controller（控制器）：在 Redux 中，控制器的角色通常由 Action Creators 和 Reducers 共同承担。Action Creators 是用于创建 Action 的函数，它们描述了发生了什么事件，比如用户点击按钮、发送 API 请求等。Reducers 是纯函数，它们接收先前的状态和一个 Action，并根据 Action 的类型来生成新的状态。Reducers 负责更新状态树，以响应用户的操作或其他事件。
 
+#### 项目MVC
+
+- Model: 与数据库相对于的模型，系统的数据组织结构
+- View: html 在 Browser 中渲染出的数据展示
+- Contorller: RESTFul 风格的API， 用于对Model的控制。
