@@ -14,6 +14,8 @@ import { initializeAllUsers } from './reducers/userReducer'
 import { initializeUser } from './reducers/authReducer'
 import { setNotification } from './reducers/notificationReducer'
 import { Table, Button } from 'react-bootstrap'
+import Login from './services/login'
+import SignInSide from './components/SignIn'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -157,8 +159,13 @@ const App = () => {
             </div>
           )}
         </Route>
+        <Route path="/login">
+          <SignInSide>
+          </SignInSide>
+        </Route>
+
         <Route path="/">
-          <Redirect to="/blogs" />
+          <Redirect to="/login" />
         </Route>
       </Switch>
     </div>

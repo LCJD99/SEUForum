@@ -25,3 +25,20 @@ docker compose up -d
 3. 访问本地[3000](localhost:3000)端口启动demo
 
 
+4. 启动开发
+
+替换下面这一行内容
+```json
+  "proxy": "http://seuforum-backend-1:3001",
+```
+为：
+```json
+  "proxy": "http://localhost:3005",
+```
+
+并启动一个json-server在docker中，具体执行如下指令
+```bash
+docker exec seuforum-frontend-1 npm run jsonserver
+```
+
+`json-server` 实际上就是一个用json文档保存的微小数据库

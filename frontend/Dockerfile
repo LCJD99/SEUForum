@@ -6,15 +6,6 @@ FROM node:lts-buster AS development
 # Create app directory
 WORKDIR /usr/src/app
 
-# Copy dependency definitions
-COPY package.json /usr/src/app
-COPY package-lock.json /usr/src/app
-
-# Install dependecies
-#RUN npm set progress=false \
-#    && npm config set depth 0 \
-#    && npm i install
-
 ENV NODE_OPTIONS --openssl-legacy-provider
 RUN npm ci
 
