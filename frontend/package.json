@@ -25,7 +25,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "cypress:open": "cypress open",
-    "format": "prettier --write 'src/**/*.js'"
+    "format": "prettier --write 'src/**/*.js'",
+    "jsonserver": "npx json-server --watch ./data/db.json --port 3005"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,12 +43,13 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://seuforum-backend-1:3001",
+  "proxy": "http://localhost:3005",
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "cypress": "^4.4.0",
     "eslint-plugin-jest": "^23.8.2",
+    "json-server": "^1.0.0-alpha.23",
     "prettier": "2.0.4"
   }
 }

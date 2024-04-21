@@ -1,5 +1,6 @@
 import axios from 'axios'
-const baseUrl = '/api/blogs'
+import rootUrl from "../utils/baseurl"
+const baseUrl = `${rootUrl}/${"blogs"}`
 
 let token = null
 let config
@@ -23,6 +24,7 @@ const create = async (newObject) => {
 
 const update = async (objectToUpdate) => {
   const response = await axios.put(
+
     `${baseUrl}/${objectToUpdate.id}`,
     objectToUpdate,
     config

@@ -25,7 +25,7 @@ docker compose up -d
 3. 访问本地[3000](localhost:3000)端口启动demo
 
 
-4. 启动开发
+### 独立开发流程
 
 替换下面这一行内容
 ```json
@@ -41,4 +41,4 @@ docker compose up -d
 docker exec seuforum-frontend-1 npm run jsonserver
 ```
 
-`json-server` 实际上就是一个用json文档保存的微小数据库
+`json-server` 实际上就是一个用json文档保存的小数据库

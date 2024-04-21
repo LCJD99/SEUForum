@@ -5,14 +5,15 @@ services:
       target: development
     ports:
       - 3000:3000
+      - 3005:3005
     stdin_open: true
     volumes:
       - ./frontend:/usr/src/app
       - /usr/src/app/node_modules
     networks:
       - react-express
-    depends_on:
-      - backend
+    # depends_on:
+    #   - backend
 
   backend:
     build:
