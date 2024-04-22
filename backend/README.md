@@ -59,3 +59,26 @@ docker compose up backend
 
 
 #### API 参考
+
+## 数据模型
+一期工程数据模型如下图所示（红色表示主键，蓝色表示外键）
+![alt text](image.png)
+User						
+属性名	_id	username	name	email	pwd	blogs
+数据类型		string	string	string	hash	blog[]
+                  
+blog						
+属性名	_id	title	author	url	user	
+数据类型	string	string	string	string	User	
+                  
+comments						
+属性名	_id	blog_id	content			
+数据类型	string	string	string			
+                  
+likes						
+属性名	_id	blog_id	total			
+数据类型	string	string	int			
+                  
+feedback						
+属性名	_id	user_id	content	status		
+数据类型	string	string	string	int		
