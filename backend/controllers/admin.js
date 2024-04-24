@@ -23,7 +23,7 @@ adminRouter.post('/', async (request, response) => {
 })
 
 adminRouter.get('/', async (request, response) => {
-    const admin = await Admin.find({}).populate('blogs', { url: 1, title: 1})
+    const admin = await Admin.find({}).populate('notice', { url: 1, title: 1})
     response.json(admin.map(admin => admin.toJSON()))
   })
 
