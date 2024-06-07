@@ -20,12 +20,12 @@ const blogSchema = mongoose.Schema({
     minlength: 3,
     required: true
   },
-  likes: {
-    type: Number
-  },
-  comments: [{
-    type: String
-  }],
+  //likes: {
+    //type: Number
+  //},
+  //comments: [{
+    //type: String
+  //}],
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
