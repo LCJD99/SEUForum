@@ -36,7 +36,7 @@ const Menu = () => {
           <Nav.Link href="#" as="span">
             <Link style={padding} to="/users">users</Link>
           </Nav.Link>
-          <span style={style}>{user.name} logged in {' '}</span>
+          {/* <span style={style}>{user.name} logged in {' '}</span> */}
           <Button variant="danger" onClick={handleLogout} type="submit">
             logout
           </Button>

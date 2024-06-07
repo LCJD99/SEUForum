@@ -9,6 +9,11 @@ const userSchema = new mongoose.Schema({
     unique: true
   },
   name: String,
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
   passwordHash: {
     type: String,
     required: true
@@ -34,3 +39,17 @@ userSchema.set('toJSON', {
 userSchema.plugin(uniqueValidator)
 
 module.exports = mongoose.model('User', userSchema)
+
+
+/*
+const user = new userSchema({
+  username: 'hahaha',
+  name: 'hahahaha',
+  passwordHash: 'jifsfs',
+})
+
+user.save().then(result =>{
+  console.log("okay")
+  mongoose.connection.close()
+})
+*/

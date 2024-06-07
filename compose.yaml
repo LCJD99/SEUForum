@@ -5,18 +5,17 @@ services:
       target: development
     ports:
       - 3000:3000
+      - 3005:3005
     stdin_open: true
     volumes:
       - ./frontend:/usr/src/app
       - /usr/src/app/node_modules
-    restart: always
     networks:
       - react-express
-    depends_on:
-      - backend
+    # depends_on:
+    #   - backend
 
   backend:
-    restart: always
     build:
       context: backend
       target: development
@@ -34,7 +33,6 @@ services:
       - 3001:3001
 
   mongo:
-    restart: always
     image: mongo
     environment:
       MONGO_INITDB_ROOT_USERNAME: root

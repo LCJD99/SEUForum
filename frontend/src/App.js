@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Switch, Route, useRouteMatch } from 'react-router-dom'
+import { Switch, Route, useRouteMatch, Redirect } from 'react-router-dom'
 import Header from './components/Header'
 import UserList from './components/UserList'
 import LoginForm from './components/LoginForm'
@@ -14,6 +14,8 @@ import { initializeAllUsers } from './reducers/userReducer'
 import { initializeUser } from './reducers/authReducer'
 import { setNotification } from './reducers/notificationReducer'
 import { Table, Button } from 'react-bootstrap'
+import Login from './services/login'
+import SignInSide from './components/SignIn'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -127,26 +129,19 @@ const App = () => {
           )}
         </Route>
         <Route path="/blogs">
-          {user === null ? (
-              <div>
-                <Notification />
-                <LoginForm />
-              </div>
-            ) : (
-              <div>
-                <Header />
-                <h2>Bloglist</h2>
-                <Notification />
-                  <Togglable buttonLabel="Add new blog" ref={blogFormRef}>
-                    <BlogForm />
-                  </Togglable>
-                  <Table striped>
-                    <tbody>
-                      <BlogList />
-                    </tbody>
-                  </Table>
-              </div>
-            )}
+          <div>
+            <Header />
+            <h2>Bloglist</h2>
+            <Notification />
+            <Togglable buttonLabel="Add new blog" ref={blogFormRef}>
+              <BlogForm />
+            </Togglable>
+            <Table striped>
+              <tbody>
+                <BlogList />
+              </tbody>
+            </Table>
+          </div>
         </Route>
         <Route path="/users">
           {user === null ? (
@@ -164,9 +159,13 @@ const App = () => {
             </div>
           )}
         </Route>
+        <Route path="/login">
+          <SignInSide>
+          </SignInSide>
+        </Route>
+
         <Route path="/">
-          <Notification />
-          <LoginForm />
+          <Redirect to="/login" />
         </Route>
       </Switch>
     </div>

@@ -40,11 +40,12 @@ if (process.env.NODE_ENV === 'test') {
   app.use('/api/testing', testingRouter)
 }
 
+app.use('/api/blogs', blogRouter)
+
 // 验证token中间件
 app.use(middleware.tokenExtractor)
 app.use(middleware.tokenValidator)
 
-app.use('/api/blogs', blogRouter)
 
 app.use(middleware.errorHandler)
 

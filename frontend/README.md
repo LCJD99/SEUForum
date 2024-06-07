@@ -1,21 +1,44 @@
-# Bloglist frontend
+# SEUForum frontend
 
-In this exercise, we will refactor the Bloglist application that we worked on in parts four and five for it to use Redux for the application's state management. We also used `React Router` for conditional rendering of components based on the url in the browser, as well as `React Bootstrap` for styling our application.
+## Develop with Docker
 
-We assume that a user already exist in the database with the good credentials. If not, please head to part 4 for creating a new user using the API.
+### Requirements
 
-## Start the application locally
+- Docker
+- Google Chrome
+- VSCode
 
-To start an application:
+#### VSCode Extensions
+- wsl
+- docker
 
-```bash
-# First, you need to start the backend, to do so, head to the part4. Everything is explained in the README
-
-# Install dependancies
-$ npm install
-
-# Start the frontend application
-$ npm start
+#### Start demo
+1. 克隆到本地 `wsl` 中
+``` bash
+git clone -b dev1.0 https://github.com/LCJD99/SEUForum.git
+```
+2. 在根目录构建docker镜像
+``` bash
+docker compose up -d
 ```
 
-You can then access the app on : http://localhost:3000/
+3. 访问本地[3000](localhost:3000)端口启动demo
+
+
+### 独立开发流程
+
+替换下面这一行内容
+```json
+  "proxy": "http://seuforum-backend-1:3001",
+```
+为：
+```json
+  "proxy": "http://localhost:3005",
+```
+
+并启动一个json-server在docker中，具体执行如下指令
+```bash
+docker exec seuforum-frontend-1 npm run jsonserver
+```
+
+`json-server` 实际上就是一个用json文档保存的小数据库

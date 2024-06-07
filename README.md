@@ -27,7 +27,7 @@
 - 版本管理工具： Git
 - 多人协同工具： Git
 - API 设计： Postman  ([API全流程](https://www.postman.com/api-platform/api-lifecycle/))
-- 数据库： 
+- 数据库：mongoDB 
 
 #### 技术细节
 
@@ -65,22 +65,48 @@
 
 ### 测试
 
-* 单元测试：https://vitest.dev/  可使用`git hook`在`commit`的时候自动测试
+* Unit Test：https://vitest.dev/  可使用`git hook`在`commit`的时候自动测试
 * CI： Github Action
-* API 测试： Postman
+* API Test： Postman
 
 
 
 ### 部署
 
 * CD: Github Action / Docker
-* 服务器： 云服务器
+* Env：Cloud 
 
 
 ## 开发框架
 
-- 前端框架： react
+- Front End： react
+   - State mamegement: Redux
+- Back End: express
+- Database: mongoDB
 
-- 后端框架: express
 
-- 数据库
+### MVC
+
+#### 对于前端状态的管理
+
+本项目前端使用 Redux 架构来管理应用程序的状态和数据流（实际属于*Model-View-Whatever*）。
+
+可以将Store理解为状态机，他的变化直接影响Components
+
+该架构将模型的状态集中管理，并通过单向数据流来更新视图。其中模型图如下
+![](https://www.ruanyifeng.com/blogimg/asset/2016/bg2016091802.jpg)
+具体模型解释见[这篇博客](https://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html)
+
+**类比MVC**
+
+Model（模型）：在 Redux 中，模型通常被称为状态（State）。状态是应用程序中的所有数据的单一来源。它类似于 MVC 模式中的模型，负责存储应用程序的数据和状态，并且是不可变的。在 Redux 中，状态通常被存储在一个单一的状态树中，被称为 Store。
+
+View（视图）：在 Redux 中，视图表示用户界面的表示。视图可以是 React 组件、HTML 元素或者任何其他类型的 UI。视图从 Redux 的状态中获取数据，并将其渲染到界面上。视图也可以响应用户的操作并将这些操作传递给控制器或者 Redux 中间件。在 React 应用中，通常会使用 connect 函数将 React 组件连接到 Redux 的状态树。
+
+Controller（控制器）：在 Redux 中，控制器的角色通常由 Action Creators 和 Reducers 共同承担。Action Creators 是用于创建 Action 的函数，它们描述了发生了什么事件，比如用户点击按钮、发送 API 请求等。Reducers 是纯函数，它们接收先前的状态和一个 Action，并根据 Action 的类型来生成新的状态。Reducers 负责更新状态树，以响应用户的操作或其他事件。
+
+#### 项目MVC
+
+- Model: 与数据库相对于的模型，系统的数据组织结构
+- View: html 在 Browser 中渲染出的数据展示
+- Contorller: RESTFul 风格的API， 用于对Model的控制。

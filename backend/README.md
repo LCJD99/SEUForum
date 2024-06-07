@@ -1,65 +1,85 @@
-# Blog list
+# SEUForum backend
 
-In this part we will be building a blog list application, that allows users to save information about interesting blogs they have stumbled across on the internet. For each listed blog we will save the author, title, url, and amount of upvotes from users of the application.
+## Develop with Docker
 
-## Start the application locally
+### Requirements
 
-To start an application:
+- Docker
+- VSCode
 
+#### VSCode Extensions
+- wsl
+- docker
+- mongo
+
+#### Start demo
+1. 克隆到本地 `wsl` 中
+``` bash
+git clone -b dev1.0 https://github.com/LCJD99/SEUForum.git
+```
+2. 在根目录构建docker镜像
+``` bash
+docker compose up -d
+```
+
+#### 后端开发启动流程
+
+1. 添加`.env` 文件
+
+具体内容如下:
+```txt
+DEV_MONGODB_URI="mongodb://root:admin@seuforum-mongo-1:27017"
+TEST_MONGODB_URI="mongodb://root:admin@seuforum-mongo-1:27017"
+SECRET="seuabc"
+PORT=3001
+```
+
+2. 启动`mongodb`的 container
+
+在根目录下执行
 ```bash
-# Install dependancies
-$ npm install
-
-# create a .env file and put there the MONGODB_URI for connecting to your mongodb database
-$ echo "MONGODB_URI=<YOUR-MONGODB-URI>" > .env
-$ echo "TEST_MONGODB_URI=<YOUR-TEST-MONGODB-URI>" > .env
-$ echo "DEV_MONGODB_URI=<YOUR-DEV-MONGODB-URI>" > .env
-
-# Set a variable SECRET which is a digital signature ensures that only parties who know the secret can generate a valid token.
-$ echo "SECRET=yoursecretphrase" > .env
-
-# Start the application in dev environment
-$ npm run dev
-
-# Start the application in prod environment
-$ npm start
-
-# # Start the application in test environment and run tests
-$ run start:test
-$ npm test
+docker compose up -d mongo
 ```
 
-Once successfully connected, the app allows you to perform the following operations:
-* Create & List `Users` (POST, GET)
-* Login using username and password (POST)
-* Create, List, Update & Delete `Blogs` (POST, GET, PUT, DELETE) for an authenticated user
+> -d 参数表示后台执行
 
-Those operations are possible using REST APIs on the following enpoints (add /ID for PUT & DELETE):
-* http://localhost:3001/api/login
-* http://localhost:3001/api/users
-* http://localhost:3001/api/blogs
+3. 启动后端开发的 container
 
-
-```json
-# To create a new user
-POST /api/users
-{
-    "username": "toto",
-    "name": "toto",
-    "password": "toto"
-}
-# To login. Once logged in, a jwt token is sent back to the user.
-POST /api/login
-{
-    "username": "toto",
-    "password": "toto"
-}
-# To create a new Blog (Using JWT token)
-POST /api/blogs - {"Authorization": "Bearer YOUR-JWT-TOKEN"}
-{
-    "title":"Go To Statement Considered Harmful",
-    "author":"Edsger W. Dijkstra",
-    "url":"http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html",
-    "likes":5
-}
+在根目录下执行
+```bash
+docker compose up backend
 ```
+在本地每次保存文件会自动重新执行程序
+
+4.  使用 mongodb 插件管理数据库
+
+其中 URL 为: mongodb://root:admin@localhost:27017/
+
+数据模型在admin中，可自行查看
+
+
+#### API 参考
+
+## 数据模型
+一期工程数据模型如下图所示（红色表示主键，蓝色表示外键）
+![alt text](image.png)
+User						
+属性名	_id	username	name	email	pwd	blog
+数据类型		string	string	string	hash	Blog[]
+                        
+Blog						
+属性名	_id	title	author	url	user	
+数据类型	string	string	string	string	User	
+                        
+Comments						
+属性名	_id	blog_id	content			
+数据类型	string	string	string			
+                        
+Likes						
+属性名	_id	blog_id	total			
+数据类型	string	string	int			
+                        
+Feedback						
+属性名	_id	user_id	content	status		
+数据类型	string	string	string	int		
+	
